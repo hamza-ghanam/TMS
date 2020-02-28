@@ -3,6 +3,12 @@
 <h1>Tasks List</h1>
 <p class="lead">Select a project to show its tasks.</p>
 <hr>
+@if(Session::has('flash_message'))
+    <div class="alert alert-success">
+        {{ Session::get('flash_message') }}
+    </div>
+@endif
+
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="form-group">
@@ -57,8 +63,15 @@
                     <td>{{$task->created_at}}</td>
                     <td>{{$task->updates_at}}</td>
                     <td>
-                        <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                        <div class="row">
+                            <a href="{{URL::to("/tasks/$task->id/edit")}}" class="btn btn-sm btn-warning mr-3">Edit</a>
+                            <form id="form_{{$task->id}}" method="POST" action="{{URL::to("/tasks/$task->id")}}">
+                                @csrf
+                                @method("DELETE")
+                                <input type="hidden" name="id" value="{{ $task->id }}">
+                                <button data-id="{{$task->id}}" type="button" class="btn btn-sm btn-danger deleteRecord">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
@@ -75,6 +88,16 @@
             url = url.replace(':pid', pid);
             window.location.href = url;
         });
+
+        $(".deleteRecord").click(function(){
+            var res = confirm('Are you sure?!');
+
+            if(res){
+                id = $(this).data("id");
+                $("#form_" + id).submit();
+            }
+        });
     });
+
 </script>
 @stop

@@ -17,7 +17,7 @@ class TaskController extends Controller
      */
     public function index($pid)
     {
-        return view('index')->with(['prid' => $pid, 'projects' => Project::all(), 'tasks' => Task::where('project_id', $pid)->get()]);
+        return view('index')->with(['prid' => $pid, 'projects' => Project::all(), 'tasks' => Task::where('project_id', $pid)->orderBy('priority')->get()]);
     }
 
     /**
@@ -59,9 +59,7 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        $task = Task::findOrFail($id);
-
-        return view('edit')->withTask($task);
+        return view('edit')->with(['task' => Task::findOrFail($id), 'projects' => Project::all()]);
     }
 
     /**
@@ -77,7 +75,7 @@ class TaskController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
-            'priorirty' => 'required',
+            'priority' => 'required',
             'project_id' => 'required',
         ]);
 
@@ -104,6 +102,6 @@ class TaskController extends Controller
 
         Session::flash('flash_message', 'Task successfully deleted!');
 
-        return redirect()->route('index');
+        return redirect()->back();
     }
 }
