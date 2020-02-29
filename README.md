@@ -1,3 +1,94 @@
+# TMS
+A simple Task Management System
+
+## About my TMS
+It's a very simple Laravel web application for task management, so you can: 
+1. Create task (task name, priority, timestamps) 
+2. Edit task.
+3. Delete task.
+4. Reorder tasks with drag and drop in the browser. Priority is automatically updated based on this. (e.g. #1 priority goes at top, #2 next down and so on.)
+Tasks are saved to a MySQL database.
+
+My TMS has project functionality to the tasks. So user is able to select a project from a dropdown and only view tasks associated with that project!
+
+## Installation
+
+First of all, You should download the source code for this project and run it on your local machine, you may clone its Git repository and install its dependencies:
+
+```bash
+git clone https://github.com/ALH-Software/TMS.git TMS
+cd TMS
+composer install
+```
+
+For more complete documentation on building a local Laravel development environment, check out the full [Homestead](https://laravel.com/docs/6.x/homestead) and [installation](https://laravel.com/docs/6.x/installation) documentation.
+
+Now you need NPM in order to install Node Modules. If you didn't install Node Package Manager (NPM) before, you can download and install it using following commands:
+
+```bash
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+```
+
+For Debian:
+
+```bash
+sudo apt install nodejs
+```
+
+For RedHat:
+
+```bash
+sudo yum install nodejs
+```
+
+For Windows, just download Node.js installer from [Here](https://nodejs.org/en/download/).
+
+
+Verify that the Node.js and npm were successfully installed by printing their versions:
+
+```bash
+node --version
+```
+
+Now, you're ready to install Node Modules using the following command:
+
+```bash
+npm install
+```
+
+## Prepping The Database
+
+Now, you need to create a MySQL database, called "tms_db", so you should have MySQL DB Engine installed and ready, then run the commands:
+
+```bash
+mysql -u root -p
+CREATE DATABASE tms_db CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+```
+
+Now, edit your .env config file, then run the following command ti migrate the database:
+
+```bash
+php artisan migrate
+```
+
+## Run the project 
+
+You can run the project using:
+
+```bash
+php artisan serve
+```
+
+## Route list of the project
+
+Here is the route list of the project:
+
+<p align="center"><img src="public/images/route_list.png" width="800"></p>
+
+---
+
+# About Laravel
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
