@@ -1,6 +1,5 @@
 # TMS
 A simple Task Management System
-<<<<<<< HEAD
 
 ## About my TMS
 It's a very simple Laravel web application for task management, so you can: 
