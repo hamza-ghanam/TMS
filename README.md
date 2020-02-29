@@ -83,7 +83,7 @@ php artisan serve
 
 Here is the route list of the project:
 
-<p align="center"><img src="public/images/route_list.png" width="800"></p>
+<p align="center"><img src="public/images/route_list.PNG" width="800"></p>
 
 ---
 
