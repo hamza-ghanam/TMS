@@ -104,4 +104,22 @@ class TaskController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     * Re-order the tasks.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function reorder(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        foreach($data as $dtask){
+            $task = Task::findOrFail($dtask['tid']);
+            $task->priority = $dtask['prio'];
+            $task->save();
+        }
+
+        return response()->json('OK', 200);
+    }
 }

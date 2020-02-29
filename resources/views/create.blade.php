@@ -29,12 +29,7 @@
             </div>
             <div class="form-group">
                 <label for="priority">Task Priority</label>
-                <select class="form-control" name="priority" id="priority">
-                    <option value="1">Critical Priority</option>
-                    <option value="2">High Priority</option>
-                    <option value="3">Medium Priority</option>
-                    <option value="4">Low Priority</option>
-                </select>
+                <input type="number" class="form-control"  name="priority" id="priority" value="1" min="1" max="10" maxlength="2" step="1">
             </div>
             <div class="form-group">
                 <label for="project">Project</label>

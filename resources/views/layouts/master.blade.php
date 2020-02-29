@@ -16,7 +16,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
-    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
 
     <!-- Fonts -->
@@ -28,7 +29,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.min.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet" />
 </head>
 
 <body>

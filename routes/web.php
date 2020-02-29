@@ -10,18 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Project;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->with('projects', Project::all());
 });
 
 Route::get('/home/{id}', 'TaskController@index')->name('home');
+Route::post('/reorder', 'TaskController@reorder')->name('reorder');;
 
 Route::resource('tasks', 'TaskController')->only([
     'create', 'store', 'edit', 'update', 'destroy'
 ]);
 
 Route::resource('tasks', 'TaskController')->except([
-    'index'
+    'index', 'reorder'
 ]);
 

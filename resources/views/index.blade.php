@@ -40,28 +40,15 @@
                 </th>
                 <th></th>
             </thead>
-            <tbody>
-                @foreach($tasks as $task)
-                <tr>
+            <tbody id="sortable">
+                @foreach($tasks as $key => $task)
+                <tr id="{{$task->id}}">
                     <td>{{$task->name}}</td>
-                    <td>
-                        @switch($task->priority)
-                        @case(1)
-                        Critical
-                        @break
-                        @case(2)
-                        High
-                        @break
-                        @case(3)
-                        Medium
-                        @break
-                        @case(4)
-                        Normal
-                        @break
-                        @endswitch
+                    <td class="prio">
+                        {{$task->priority}}
                     </td>
                     <td>{{$task->created_at}}</td>
-                    <td>{{$task->updates_at}}</td>
+                    <td>{{$task->updated_at}}</td>
                     <td>
                         <div class="row">
                             <a href="{{URL::to("/tasks/$task->id/edit")}}" class="btn btn-sm btn-warning mr-3">Edit</a>
@@ -80,7 +67,34 @@
     </div>
 </div>
 <script>
+    $( "#sortable" ).sortable({
+        update: function( event, ui ) {
+            var itemid = ui.item.attr('id');
+              var order = [];
+               $('#sortable tr').each( function(e) {
+                $(this).children('td.prio').html($(this).index() + 1);
+                order.push( {'tid': $(this).attr('id'), 'prio': ( $(this).index() + 1 ) } );
+              });
+
+              $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+              $.ajax({
+                type: "POST",
+                url:"{{ route('reorder') }}",
+                data: JSON.stringify(order),
+                success:function(data) {
+                    alert(data + ', task order updated!');
+                },
+                error: function (request, status, error) {
+                    console.log(request.responseText);
+                }
+            });
+
+        }
+    });
+    $("#sortable").disableSelection();
+
     $( document ).ready(function() {
+
         $('#mySelect').val('');
         $("#project").change(function(){
             var pid = $(this).children("option:selected").val();
@@ -98,6 +112,5 @@
             }
         });
     });
-
 </script>
 @stop

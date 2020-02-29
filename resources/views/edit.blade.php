@@ -30,12 +30,7 @@
             </div>
             <div class="form-group">
                 <label for="priority">Task Priority</label>
-                <select class="form-control" name="priority" id="priority">
-                    <option value="1" {{$task->priority == 1 ? 'selected' : ''}}>Critical Priority</option>
-                    <option value="2" {{$task->priority == 2 ? 'selected' : ''}}>High Priority</option>
-                    <option value="3" {{$task->priority == 3 ? 'selected' : ''}}>Medium Priority</option>
-                    <option value="4" {{$task->priority == 4 ? 'selected' : ''}}>Normal Priority</option>
-                </select>
+                <input type="number" class="form-control"  name="priority" value="{{$task->priority}}" id="priority" min="1" max="10" maxlength="2">
             </div>
             <div class="form-group">
                 <label for="project">Project</label>
