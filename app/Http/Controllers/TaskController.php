@@ -17,7 +17,8 @@ class TaskController extends Controller
      */
     public function index($pid)
     {
-        return view('index')->with(['prid' => $pid, 'projects' => Project::all(), 'tasks' => Task::where('project_id', $pid)->orderBy('priority')->get()]);
+        return view('index')
+            ->with(['prid' => $pid, 'projects' => Project::all(), 'tasks' => Task::where('project_id', $pid)->orderBy('priority')->get()]);
     }
 
     /**

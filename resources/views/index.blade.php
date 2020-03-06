@@ -67,7 +67,7 @@
     </div>
 </div>
 <script>
-    $( "#sortable" ).sortable({
+    $("#sortable").sortable({
         update: function( event, ui ) {
             var itemid = ui.item.attr('id');
               var order = [];
